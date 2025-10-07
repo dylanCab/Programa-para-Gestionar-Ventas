@@ -3,7 +3,7 @@
 
 int main() {
     char ID[15];
-    char name[15];
+    char name[50];
     int stock;
     float precio;
     char ans[2];
@@ -13,18 +13,19 @@ int main() {
 printf("Bienvenido!\nPor favor, registre su producto\n");
 do{
 printf("Ingrese ID del producto:");
-scanf("%s", &ID);
+scanf("%s", ID);
 printf("Ingrese el nombre del producto:");
-scanf("%s", &name);
+while(getchar()!='\n');
+fgets(name,sizeof(name),stdin);
 printf("Ingrese la cantidad en stock:");
 scanf("%d", &stock);
 printf("Ingrese el precio unitario del producto:");
 scanf("%f", &precio);
 printf("Ha introducido los datos correctamente?\nResponda Si o No:");
-scanf("%s",&ans);
+scanf("%s",ans);
 }while(strcmp(ans, "Si")!=0);
 do{
-printf("¿Que desea realizar?\n1 - Vender el producto\n2 - Reabastecer el producto\n3 - Consultar informacion del producto\n4 - Consultar ganancias\n5 - Salir del programa\n Ingrese un numero:");
+printf("Que desea realizar?\n1 - Vender el producto\n2 - Reabastecer el producto\n3 - Consultar informacion del producto\n4 - Consultar ganancias\n5 - Salir del programa\n Ingrese un numero:");
 
 do{
 scanf("%d", &accion);
@@ -35,7 +36,7 @@ if(accion<1||accion>5){
 
 switch(accion){
     case 1:
-        printf("¿Cuantas unidades desea vender?\n");
+        printf("Cuantas unidades desea vender?\n");
         scanf("%d", &venta);
         if(venta>stock){
             printf("Venta negada! No hay suficientes unidades disponibles\nStock actual:%d", stock);
