@@ -3,7 +3,7 @@
 
 int main()
 {
-    char ID[15];
+    char ID[20];
     char name[50];
     int stock;
     float precio;
@@ -25,9 +25,9 @@ int main()
         scanf("%d", &stock);
         printf("Ingrese el precio unitario del producto:");
         scanf("%f", &precio);
-        printf("Ha introducido los datos correctamente?\nResponda Si o No:");
+        printf("Ha introducido los datos correctamente?\nResponda si o no:");
         scanf("%s", ans);
-    } while (strcmp(ans, "Si") != 0);
+    } while (strcmp(ans, "si") != 0);
     do
     {
         printf("\tQue desea realizar?\n\t1 - Registrar venta\n\t2 - Reabastecer el producto\n\t3 - Consultar informacion del producto\n\t4 - Consultar ganancias\n\t5 - Salir del programa\nIngrese un numero:");
@@ -45,20 +45,22 @@ int main()
                 scanf("%d", &venta);
                 if (venta > stock)
                 {
-                    printf("Venta negada! No hay suficientes unidades disponibles\nStock actual:%d", stock);
+                    printf("Venta negada! No hay suficientes unidades disponibles\nStock actual:%d\n", stock);
                 }
                 else
                 {
                     stock = stock - venta;
                     ventas = ventas + venta;
-                    printf("Venta exitosa!\nStock actual:%d\n", stock);
+                    ganancia = venta * precio;
+
+                    printf("Venta exitosa!\nStock actual:%d\nVenta total:$%.2f\n", stock, ganancia);
                 }
                 printf("Pulse enter para continuar...");
                 getchar();
                 getchar();
                 break;
             case 2:
-                printf("Cuantas unidades desea reabastecer?\n");
+                printf("Cuantas unidades desea agregar?\n");
                 scanf("%d", &venta);
                 stock = stock + venta;
                 printf("Reabastecimiento exitoso!\nStock actual:%d\nPulse enter para continuar...", stock);
@@ -85,10 +87,11 @@ int main()
                     printf("%.2f\n", precio);
                     break;
                 }
-                
+
                 printf("Pulse enter para continuar...");
                 getchar();
                 getchar();
+                break;
 
             case 4:
                 ganancia = ventas * precio;
