@@ -41,20 +41,28 @@ int main()
             switch (accion)
             {
             case 1:
-                printf("Cuantas unidades desea vender?\n");
+                printf("Cuantas unidades desea vender?\nStock actual:%d\n", stock);
                 scanf("%d", &venta);
-                if (venta > stock)
+                if (venta > 0)
                 {
-                    printf("Venta negada! No hay suficientes unidades disponibles\nStock actual:%d\n", stock);
+                    if (venta > stock)
+                    {
+                        printf("Venta negada! No hay suficientes unidades disponibles\nStock actual:%d\n", stock);
+                    }
+                    else
+                    {
+                        stock = stock - venta;
+                        ventas = ventas + venta;
+                        ganancia = venta * precio;
+
+                        printf("Venta exitosa!\nStock actual:%d\nVenta total:$%.2f\n", stock, ganancia);
+                    }
                 }
                 else
                 {
-                    stock = stock - venta;
-                    ventas = ventas + venta;
-                    ganancia = venta * precio;
-
-                    printf("Venta exitosa!\nStock actual:%d\nVenta total:$%.2f\n", stock, ganancia);
+                    printf("ERROR\nIngrese numeros enteros positivos\n");
                 }
+
                 printf("Pulse enter para continuar...");
                 getchar();
                 getchar();
