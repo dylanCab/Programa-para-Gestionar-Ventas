@@ -3,8 +3,8 @@
 
 int main()
 {
-    char ID[20];
-    char name[50];
+    char ID[30];
+    char name[30];
     int stock;
     float precio;
     char ans[2];
@@ -12,15 +12,25 @@ int main()
     int ventas = 0;
     float ganancia;
     int accion;
-    printf("Bienvenido!\nPor favor, registre su producto\n");
+    
+    void continuar(){
+                printf("\nPulse enter para continuar...");
+                getchar();
+                getchar();
+    }
+    
+    void fget(char array[30]){
+        fgets(array,30, stdin);
+        array[strcspn(array, "\n")]='\0';
+    }
+    
+    printf("Bienvenido!\nPor favor, registre su producto");
     do
     {
-        printf("Ingrese ID del producto:");
-        scanf("%s", ID);
+        printf("\nIngrese ID del producto:");
+        fget(ID);
         printf("Ingrese el nombre del producto:");
-        while (getchar() != '\n')
-            ;
-        fgets(name, sizeof(name), stdin);
+        fget(name);
         printf("Ingrese la cantidad en stock:");
         scanf("%d", &stock);
         printf("Ingrese el precio unitario del producto:");
@@ -30,7 +40,7 @@ int main()
     } while (strcmp(ans, "si") != 0);
     do
     {
-        printf("\tQue desea realizar?\n\t1 - Registrar venta\n\t2 - Reabastecer el producto\n\t3 - Consultar informacion del producto\n\t4 - Consultar ganancias\n\t5 - Salir del programa\nIngrese un numero:");
+        printf("\nQue desea realizar?\n\t1 - Registrar venta\n\t2 - Reabastecer el producto\n\t3 - Consultar informacion del producto\n\t4 - Consultar ganancias\n\t5 - Salir del programa\nIngrese un numero:");
         scanf("%d", &accion);
         if (accion < 1 || accion > 5)
         {
@@ -63,17 +73,14 @@ int main()
                     printf("ERROR\nIngrese numeros enteros positivos\n");
                 }
 
-                printf("Pulse enter para continuar...");
-                getchar();
-                getchar();
+                continuar();
                 break;
             case 2:
                 printf("Cuantas unidades desea agregar?\n");
                 scanf("%d", &venta);
                 stock = stock + venta;
-                printf("Reabastecimiento exitoso!\nStock actual:%d\nPulse enter para continuar...", stock);
-                getchar();
-                getchar();
+                printf("Reabastecimiento exitoso!\nStock actual:%d", stock);
+                continuar();
 
                 break;
             case 3:
@@ -96,17 +103,13 @@ int main()
                     break;
                 }
 
-                printf("Pulse enter para continuar...");
-                getchar();
-                getchar();
+                continuar();
                 break;
 
             case 4:
                 ganancia = ventas * precio;
-                printf("Unidades vendidas:%d\nIngreso total:%.2f\n", ventas, ganancia);
-                printf("Pulse enter para continuar...");
-                getchar();
-                getchar();
+                printf("Unidades vendidas:%d\nIngreso total:%.2f", ventas, ganancia);
+               continuar();
 
                 break;
             case 5:
